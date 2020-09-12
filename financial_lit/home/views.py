@@ -24,7 +24,7 @@ def sign_up(request):
         pw = request.POST['password']
         b = User(first_name = fname, last_name = lname, email = email, password = pw)
         b.save()
-    return HttpResponse(b.id)
+        return HttpResponse(b.id)
 
 def finance(request):
     return HttpResponse("")

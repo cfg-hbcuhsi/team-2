@@ -18,7 +18,7 @@ import { Doughnut } from 'react-chartjs-2';
 import TextField from '@material-ui/core/TextField';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
-
+import { Divider } from '@material-ui/core';
 
 const useStyles = makeStyles({
   root: {
@@ -55,7 +55,7 @@ const Income = () => {
              'Allowance'],
     datasets: [
       {
-        label: 'Rainfall',
+        label: 'Income Chart',
         backgroundColor: [
           '#ffadad',
           '#a0c4ff',
@@ -122,6 +122,7 @@ const Income = () => {
               <CardHeader
                 title="Income"
               />
+              <Divider />
               <CardContent>
                 <TableContainer component={Paper}>
                   <Table className={classes.table} aria-label="simple table">

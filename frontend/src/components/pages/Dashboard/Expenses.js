@@ -51,7 +51,7 @@ const Expenses = () => {
              'Misc.'],
     datasets: [
       {
-        label: 'Rainfall',
+        label: 'Expenses Chart',
         backgroundColor: [
           '#ffadad',
           '#a0c4ff',

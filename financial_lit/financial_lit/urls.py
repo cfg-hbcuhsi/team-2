@@ -23,4 +23,5 @@ urlpatterns = [
     path('api/signup', sign_up),
     path('api/dashboard', income),
     path('api/charts', piechart),
+    path('api/expenses',get_expenses)
 ]

@@ -21,6 +21,9 @@ def sign_up(request):
         lname = request.POST['Last Name']
         email = request.POST['email']
         pw = request.POST['password']
+        b = User(first_name = fname, last_name = lname, email = email, password = pw)
+        b.save()
+
 
     return HttpResponse("")
 

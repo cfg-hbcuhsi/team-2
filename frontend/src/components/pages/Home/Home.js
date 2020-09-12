@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const Home = () => {
   const classes = useStyles();
   const [registered, setRegistered] = useState(true)
+  const [confirmation, setConfirmation] = useState(false)
 
   return (
     <Grid container>

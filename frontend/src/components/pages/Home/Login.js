@@ -11,11 +11,17 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import axios from 'axios'
+import { useHistory } from "react-router-dom";
+
 
 const Login = (props)=> {
   const classes = useStyles();
   const [email,setEmail] = useState('');
   const [password, setPassword] = useState('')
+
+  let history = useHistory();
+
 
   const {registered, setRegistered} = props
   const switchForm = () =>{
@@ -24,8 +30,15 @@ const Login = (props)=> {
 
   const logIn = (e)=>{
     e.preventDefault();
-
-    console.log(email,password)
+    axios.post('http://127.0.0.1:8000/api/login', {
+      email: email,
+      password: password
+    }).then(res => {
+      
+      localStorage.setItem('id',res.data)
+    });
+    history.push('/dashboard')
+    
   }
 
   return (

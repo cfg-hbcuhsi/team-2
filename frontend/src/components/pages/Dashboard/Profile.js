@@ -108,7 +108,7 @@ export const Profile = () => {
         </Grid>
       </Grid>
       <Button style={{marginTop:"10px "}}variant="contained" color="primary">
-        Confirm
+        Confirm Changes
       </Button>
     </React.Fragment>
             </CardContent>

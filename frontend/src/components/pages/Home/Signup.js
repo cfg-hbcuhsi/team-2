@@ -11,6 +11,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import axios from 'axios'
 
 const Signup = (props)=> {
   const classes = useStyles();
@@ -19,15 +20,21 @@ const Signup = (props)=> {
   const [email,setEmail] = useState('');
   const [password, setPassword] = useState('')
 
+
   const {registered, setRegistered} = props
   const switchForm = () =>{
       setRegistered(!registered)
   }
-
-  const logIn = (e)=>{
+    
+  const signOut = (e) =>{
     e.preventDefault();
-
-    console.log(email,password,firstname,lastname)
+    axios.post('http://127.0.0.1:8000/api/signup', {
+      First_Name: firstname,
+      Last_Name: lastname,
+      email: email,
+      password: password
+    }).then(res => console.log(res.data));
+    setRegistered(!registered)
   }
 
   return (
@@ -92,9 +99,9 @@ const Signup = (props)=> {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick = {logIn}
+            onClick = {signOut}
           >
-            Sign In
+            Sign Up
           </Button>
         </form>
       </div>

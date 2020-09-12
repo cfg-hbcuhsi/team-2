@@ -42,11 +42,10 @@ function createData(amount, source) {
   return { amount, source };
 }
 const rows = [
-  createData(480, 'Work 1'),
-  createData(420, 'Work 2'),
-  createData(502, 'Work 1'),
-  createData(202, 'Work 2'),
-  createData(404, 'Work 1'),
+  createData(65, 'Work 1'),
+  createData(59, 'Work 2'),
+  createData(80, 'Scholarship'),
+  createData(81, 'Allowance')
 ];
 
 const Income = () => {
@@ -72,6 +71,9 @@ const Income = () => {
       }
     ]
   })
+
+  const [income, setIncome] = useState()
+  const [source, setS] = useState()
 
   const classes = useStyles();
 
@@ -106,7 +108,7 @@ const Income = () => {
               </CardContent>
             </Card>
             <Box py={1} className={classes.root}>
-            <TextField id="outlined-basic" label="Enter Income" variant="outlined" />
+            <TextField id="outlined-basic" label="Enter Income" variant="outlined"  onChange={(e)=> setIncome(e.target.value) }/>
             </Box>
             <Box py={1}  className={classes.root}>
             <TextField id="outlined-basic" label="Enter Source" variant="outlined" />

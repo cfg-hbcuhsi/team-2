@@ -16,6 +16,9 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Pie } from 'react-chartjs-2';
 import { Divider } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
   root: {
@@ -116,7 +119,15 @@ const Budget = () => {
             </Typography>
               </CardContent>
             </Card>
-
+            <Box py={1} className={classes.root}>
+            <TextField id="outlined-basic" label="Enter Budget" variant="outlined" />
+            </Box>
+            <Box py={1} className={classes.root}>
+            <TextField id="outlined-basic" label="Enter Cateogory" variant="outlined" />
+            </Box>
+            <Button variant="contained" color="primary">
+              Track
+            </Button>
 
           </Grid>
           <Grid item xs={12}>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
@@ -30,6 +30,7 @@ import Expenses from './Expenses'
 import Resources from './Resources'
 import Button from '@material-ui/core/Button';
 import Goals from './Goals'
+import axios from 'axios'
 
 
 const drawerWidth = 240;
@@ -74,7 +75,7 @@ function Dashboard(props) {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  const [tab,setTab] = useState(5);
+  const [tab,setTab] = useState(1);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);

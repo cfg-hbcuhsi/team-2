@@ -18,6 +18,8 @@ import { Doughnut } from 'react-chartjs-2';
 import TextField from '@material-ui/core/TextField';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+import axios from "axios"
+import {useEffect} from 'react'
 
 const useStyles = makeStyles({
   root: {
@@ -71,6 +73,13 @@ const Expenses = () => {
       }
     ]
   })
+
+  const [loading,setLoading] = useState(true)
+
+  useEffect(() => {
+    axios.post('http://127.0.0.1:8000/api/expense', 1).then(res => console.log(res.data))
+  }, [])
+
 
   const classes = useStyles();
 

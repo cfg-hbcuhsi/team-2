@@ -19,9 +19,9 @@ from home.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/Luis', test)
-    path('api/login', login)
-    path('api/signup', signup)
-    path('api/dashboard', finance)
-    path('api/charts', piechart)
+    path('api/Luis', test),
+    path('api/login', login),
+    path('api/signup', sign_up),
+    path('api/dashboard', finance),
+    path('api/charts', piechart),
 ]

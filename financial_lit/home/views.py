@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import User
 
 # Create your views here.
 def test(request):
@@ -11,7 +12,7 @@ def login(request):
         email = request.POST['email']
         pw = request.POST['password']
         user = User.objects.filter(email = email)
-        if user != None and user.password == pw:
+        if user != '' and user.password == pw:
             return user.id
         return HttpResponse('Unauthorized', status=401)
 

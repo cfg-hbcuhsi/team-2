@@ -8,14 +8,18 @@ import json
 def test(request):
     return HttpResponse("hello")
 
+@csrf_exempt
 def login(request):
     if request.method == 'POST':
-        email = simplejson.loads(request.POST['email'])
-        pw = request.POST.get('password')
-        user = User.objects.filter(email = email)
-        if bool(user) and user.password == pw:
-            return HttpResponse(user.id)
+        json_data = request.read()
+        data = json.loads(json_data)
+        email = data['email']
+        pw = data['password']
+        user = User.objects.filter(email = email, password = pw)
+        if bool(user):
+            return HttpResponse(user[0].id)
         return HttpResponse('Unauthorized', status=401)
+
 @csrf_exempt
 def sign_up(request):
     if request.method == 'POST':

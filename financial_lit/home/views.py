@@ -27,7 +27,7 @@ def sign_up(request):
         return HttpResponse(b.id)
 
 def finance(request):
-    if request.method == 'POST'
+    #if request.method == 'POST'
 
     return HttpResponse("")
 

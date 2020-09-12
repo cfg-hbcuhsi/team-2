@@ -1,2 +1,4 @@
 *.pem
 *.ppk
+
+node_modules/

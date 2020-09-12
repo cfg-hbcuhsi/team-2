@@ -107,7 +107,7 @@ export const Profile = () => {
           />
         </Grid>
       </Grid>
-      <Button variant="contained" color="primary">
+      <Button style={{marginTop:"10px "}}variant="contained" color="primary">
         Confirm
       </Button>
     </React.Fragment>

@@ -74,7 +74,7 @@ function Dashboard(props) {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  const [tab,setTab] = useState(6);
+  const [tab,setTab] = useState(5);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -119,14 +119,6 @@ function Dashboard(props) {
           <ListItemText primary="Expenses" />
         </ListItem>
 
-
-        <ListItem button onClick={()=>{setTab(7)}}>
-          <ListItemIcon>
-            <PersonIcon />
-          </ListItemIcon>
-          <ListItemText primary="Goals" />
-        </ListItem>
-
         <ListItem button onClick={()=>{setTab(5)}}>
           <ListItemIcon>
             <NoteIcon />
@@ -166,9 +158,6 @@ function Dashboard(props) {
     }
     if(tab == 6){
       return <Profile/>
-    }
-    if(tab == 7){
-      return <Goals/>
     }
   }
 

@@ -6,14 +6,13 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { green } from '@material-ui/core/colors';
-import { Doughnut } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import { Divider } from '@material-ui/core';
 
 const useStyles = makeStyles({
   root: {
     minWidth: 200,
     textAlign: 'center',
-
   },
   title: {
     fontSize: 14,
@@ -30,24 +29,26 @@ const useStyles = makeStyles({
 });
 
 const Summary = () => {
-  const [data, setData] = useState({
+  const [incomeData, setIncomeData] = useState({
     labels: ['Work 1', 'Work 2', 'Scholarship',
       'Allowance'],
     datasets: [
       {
-        label: 'Rainfall',
-        backgroundColor: [
-          '#ffadad',
-          '#a0c4ff',
-          '#bdb2ff',
-          '#CAFFBF'
-        ],
-        hoverBackgroundColor: [
-          '#FF8585',
-          '#70A7FF',
-          '#9985FF',
-          '#99FF85'
-        ],
+        label: 'Income chart',
+        backgroundColor: '#ffadad',
+        hoverBackgroundColor: '#6C534E',
+        data: [65, 59, 80, 81]
+      }
+    ]
+  })
+  const [expenseData, setExpenseData] = useState({
+    labels: ['Rent/Mortgage', 'Food', 'Phone Bill',
+      'Miscellaneous'],
+    datasets: [
+      {
+        label: 'Expenses chart',
+        backgroundColor: '#FFD6A5',
+        hoverBackgroundColor: '#FFC885',
         data: [65, 59, 80, 81]
       }
     ]
@@ -61,7 +62,7 @@ const Summary = () => {
           <Card className={classes.root} variant="outlined">
             <CardContent>
               <Typography variant="h5" component="h2">
-                $700.68
+                $1262
             </Typography>
               <Typography className={classes.pos} color="textSecondary">
                 Budget
@@ -110,7 +111,7 @@ const Summary = () => {
             />
             <Divider />
             <CardContent>
-              <Doughnut data={data} />
+              <Bar data={incomeData} />
 
             </CardContent>
           </Card>
@@ -122,7 +123,7 @@ const Summary = () => {
             />
             <Divider />
             <CardContent>
-              <Doughnut data={data} />
+              <Bar data={expenseData} />
 
             </CardContent>
           </Card>

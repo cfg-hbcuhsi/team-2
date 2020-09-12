@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import User
+from .models import User, Income
 from django.views.decorators.csrf import csrf_exempt
 import json
+from django.forms.models import model_to_dict
 
 # Create your views here.
 def test(request):
@@ -39,6 +40,25 @@ def finance(request):
 
 def piechart(request):
     return HttpResponse("")
+
+@csrf_exempt
+def income(request):
+    if request.method == 'POST':
+        json_data = request.read()
+        data = json.loads(json_data)
+        user = User.objects.filter(id = data['id'])
+        print(user)
+        income1 = Income.objects.filter(userId = data['id'])
+        income2 = income1.all()
+        #income2 = json.dumps(income1)
+        print(type(income2))
+        print(income2)
+        print(income2.values())
+        #print(income2.values['id'])
+        print(income2.values('id'))
+        a = list(income2.values())
+        print(type(a[0]))
+        return HttpResponse(json.dumps(a))
 
 
 

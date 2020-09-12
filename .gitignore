@@ -1,4 +1,4 @@
 *.pem
 *.ppk
-
+*.swp
 node_modules/

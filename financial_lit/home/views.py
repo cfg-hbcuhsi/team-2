@@ -12,8 +12,8 @@ def login(request):
         email = request.POST['email']
         pw = request.POST['password']
         user = User.objects.filter(email = email)
-        if user != '' and user.password == pw:
-            return user.id
+        if bool(user) and user.password == pw:
+            return HttpResponse(user.id)
         return HttpResponse('Unauthorized', status=401)
 
 def sign_up(request):
@@ -24,9 +24,7 @@ def sign_up(request):
         pw = request.POST['password']
         b = User(first_name = fname, last_name = lname, email = email, password = pw)
         b.save()
-
-
-    return HttpResponse("")
+    return HttpResponse(b.id)
 
 def finance(request):
     return HttpResponse("")

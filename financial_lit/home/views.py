@@ -15,7 +15,7 @@ def login(request):
         if bool(user) and user.password == pw:
             return HttpResponse(user.id)
         return HttpResponse('Unauthorized', status=401)
-
+@csrf_exempt
 def sign_up(request):
     if request.method == 'POST':
         fname = request.POST['First_Name']

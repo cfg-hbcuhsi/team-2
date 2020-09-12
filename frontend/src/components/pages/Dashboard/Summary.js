@@ -1,92 +1,138 @@
-import React from 'react';
-import {Pie, Doughnut} from 'react-chartjs-2';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
+import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import { green } from '@material-ui/core/colors';
+import { Doughnut } from 'react-chartjs-2';
+import { Divider } from '@material-ui/core';
 
+const useStyles = makeStyles({
+  root: {
+    minWidth: 200,
+    textAlign: 'center',
 
+  },
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+  avatar: {
+    backgroundColor: green[500],
+  },
+  table: {
+    minWidth: 650,
+  },
+});
 
-const state = {
-    labels: ['January', 'February', 'March',
-             'April', 'May'],
+const Summary = () => {
+  const [data, setData] = useState({
+    labels: ['Work 1', 'Work 2', 'Scholarship',
+      'Allowance'],
     datasets: [
       {
         label: 'Rainfall',
         backgroundColor: [
-          '#B21F00',
-          '#C9DE00',
-          '#2FDE00',
-          '#00A6B4',
-          '#6800B4'
+          '#ffadad',
+          '#a0c4ff',
+          '#bdb2ff',
+          '#CAFFBF'
         ],
         hoverBackgroundColor: [
-        '#501800',
-        '#4B5000',
-        '#175000',
-        '#003350',
-        '#35014F'
+          '#FF8585',
+          '#70A7FF',
+          '#9985FF',
+          '#99FF85'
         ],
-        data: [65, 59, 80, 81, 56]
+        data: [65, 59, 80, 81]
       }
     ]
-  }
+  })
 
-  const useStyles = makeStyles({
-    root: {
-      minWidth: 275,
-    },
-    bullet: {
-      display: 'inline-block',
-      margin: '0 2px',
-      transform: 'scale(0.8)',
-    },
-    title: {
-      fontSize: 14,
-    },
-    pos: {
-      marginBottom: 12,
-    },
-  });
-
-
-const Summary = () =>{
-    const classes = useStyles();
+  const classes = useStyles();
+  function FormRow() {
     return (
-
-      <div>
-          <Card className={classes.root}>
+      <React.Fragment>
+        <Grid item xs={4}>
+          <Card className={classes.root} variant="outlined">
             <CardContent>
-            <Typography className={classes.title} color="textSecondary" gutterBottom>
-            Budget
-          </Typography>
-          </CardContent>
+              <Typography variant="h5" component="h2">
+                $700.68
+            </Typography>
+              <Typography className={classes.pos} color="textSecondary">
+                Budget
+            </Typography>
+            </CardContent>
           </Card>
-        <Card className={classes.root}>
+        </Grid>
+        <Grid item xs={4}>
+          <Card className={classes.root} variant="outlined">
             <CardContent>
-            <Typography className={classes.title} color="textSecondary" gutterBottom>
-            Total Income
-          </Typography>
-          <Typography variant="h5" component="h2">
-            $63000
+              <Typography variant="h5" component="h2">
+                $700.68
+            </Typography>
+              <Typography className={classes.pos} color="textSecondary">
+                Total Income
             </Typography>
             </CardContent>
-        </Card>
-        <Card className={classes.root}>
+          </Card>
+        </Grid>
+        <Grid item xs={4}>
+          <Card className={classes.root} variant="outlined">
             <CardContent>
-            <Typography className={classes.title} color="textSecondary" gutterBottom>
-            Total Expenses
-          </Typography>
-          <Typography variant="h5" component="h2">
-            $29000
+              <Typography variant="h5" component="h2">
+                $700.68
+            </Typography>
+              <Typography className={classes.pos} color="textSecondary">
+                Total Expenses
             </Typography>
             </CardContent>
-        </Card>
-      </div>
-    )
+          </Card>
+        </Grid>
+      </React.Fragment>
+    );
+  }
+  return (
+    <div>
+      <Grid container spacing={1}>
+        <Grid container item xs={12} spacing={3}>
+          <FormRow />
+        </Grid>
+
+        <Grid item xs={6}>
+          <Card variant="outlined">
+            <CardHeader
+              title="Income"
+            />
+            <Divider />
+            <CardContent>
+              <Doughnut data={data} />
+
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={6}>
+          <Card variant="outlined">
+            <CardHeader
+              title="Expenses"
+            />
+            <Divider />
+            <CardContent>
+              <Doughnut data={data} />
+
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
+
+    </div>
+  );
+
+
 }
 
 export default Summary

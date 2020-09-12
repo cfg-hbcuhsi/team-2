@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -14,63 +14,131 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { Doughnut } from 'react-chartjs-2';
 
 const useStyles = makeStyles({
-    root: {
-      maxWidth: 300,
-    },
-    title: {
-      fontSize: 14,
-    },
-    pos: {
-      marginBottom: 12,
-    },
-    avatar: {
-      backgroundColor: green[500],
-    },
-    table: {
-      minWidth: 650,
-    },
-  });
+  root: {
+    maxWidth: 200,
+  },
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+  avatar: {
+    backgroundColor: green[500],
+  },
+  table: {
+    minWidth: 650,
+  },
+});
 
-  function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
-  }
-  const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-  ];
+function createData(amount, source) {
+  return { amount, source };
+}
+const rows = [
+  createData(480, 'Work 1'),
+  createData(420, 'Work 2'),
+  createData(502, 'Work 1'),
+  createData(202, 'Work 2'),
+  createData(404, 'Work 1'),
+];
+
 const Income = () => {
-    const classes = useStyles();
-  
+   const [data,setData] = useState({
+    labels: ['Work 1', 'Work 2', 'Scholarship',
+             'Allowance'],
+    datasets: [
+      {
+        label: 'Rainfall',
+        backgroundColor: [
+          '#ffadad',
+          '#a0c4ff',
+          '#bdb2ff',
+          '#CAFFBF'
+        ],
+        hoverBackgroundColor: [
+        '#FF8585',
+        '#70A7FF',
+        '#9985FF',
+        '#99FF85'
+        ],
+        data: [65, 59, 80, 81]
+      }
+    ]
+  })
+
+  const classes = useStyles();
+
     return (
       <div>
-              <Card className={classes.root} variant="outlined">
-          <CardHeader
-            avatar={
-          <Avatar aria-label="dollar logo" className={classes.avatar}>
-            $
-          </Avatar>
-        }
-      />
-        <CardContent>
-          <Typography variant="h5" component="h2">
-            $700.68
-          </Typography>
-          <Typography className={classes.pos} color="textSecondary">
-            Total Income
-          </Typography>
-        </CardContent>
-      </Card>
-      
-      </div>
-      
+        <Grid container spacing={1}>
+          <Grid item xs={6}>
+          <Card variant="outlined">
+          <Doughnut data={data} />
 
-      
+            </Card>
+          </Grid>
+          <Grid item xs={6}
+            >
+            <Card className={classes.root} variant="outlined">
+              <CardHeader
+                avatar={
+                  <Avatar aria-label="dollar logo" className={classes.avatar}>
+                    $
+            </Avatar>
+                }
+              />
+              <CardContent>
+                <Typography variant="h5" component="h2">
+                  $700.68
+            </Typography>
+                <Typography className={classes.pos} color="textSecondary">
+                  Total Income
+            </Typography>
+              </CardContent>
+            </Card>
+
+
+          </Grid>
+          <Grid item xs={12}>
+            <Card variant="outlined">
+              <CardHeader
+                title="Income"
+              />
+              <CardContent>
+                <TableContainer component={Paper}>
+                  <Table className={classes.table} aria-label="simple table">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Amount ($)</TableCell>
+                        <TableCell align="center">Source</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {rows.map((row) => (
+                        <TableRow key={row.amount}>
+                          <TableCell component="th" scope="row">
+                            {row.amount}
+                          </TableCell>
+                          <TableCell align="center">{row.source}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </CardContent>
+            </Card>
+
+
+          </Grid>
+        </Grid>
+
+      </div>
     );
+
+
 }
 
-export default Income;
+export default Income

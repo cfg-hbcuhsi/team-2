@@ -1,2 +1,3 @@
 # Testing 
-# testing
+# dependencies
+django

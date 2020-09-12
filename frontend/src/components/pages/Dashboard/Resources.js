@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -8,6 +8,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Link from '@material-ui/core/Link';
+import { CardContent } from '@material-ui/core';
 
 
 const useStyles = makeStyles({
@@ -20,11 +21,43 @@ const Resources = () => {
   const classes = useStyles();
   const preventDefault = (event) => event.preventDefault();
 
-
+  const [c,setC] = useState({
+      one:false,
+      two:false,
+      three:false
+  })
+  
   return (
     <div className={classes.root}>
+  
+{!c.one?<Accordion>
+    <AccordionSummary
+      expandIcon={<ExpandMoreIcon />}
+      aria-label="Expand"
+      aria-controls="additional-actions1-content"
+      id="additional-actions1-header"
+    >
+      <FormControlLabel
+        aria-label="Acknowledge"
+        onClick={()=>{setC({...c,one:true})}}
+        onFocus={(event) => event.stopPropagation()}
+        control={<Checkbox />}
+        label="College Guide For Low Income Students"
+      />
+    </AccordionSummary>
+    <AccordionDetails>
+      <Typography color="textSecondary">
+      Besides money, the largest hurdle that low-income college students face is an overall lack of resources.  Low-income students are unlikely to have personal or professional mentors to guide them through the challenges of higher education.  They are also less likely to have family support for choosing the right college, completing financial aid forms, or even regular visits once they get to school.
+      <br/>
+      <Link href="https://www.accreditedschoolsonline.org/resources/low-income-students/" onClick={preventDefault}>
+        Source
+     </Link>
+      </Typography>
+    </AccordionDetails>
+  </Accordion> :<></>}
 
-<Accordion>
+  
+{!c.two? <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-label="Expand"
@@ -33,33 +66,7 @@ const Resources = () => {
         >
           <FormControlLabel
             aria-label="Acknowledge"
-            onClick={(event) => event.stopPropagation()}
-            onFocus={(event) => event.stopPropagation()}
-            control={<Checkbox />}
-            label="College Guide For Low Income Students"
-          />
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography color="textSecondary">
-          Besides money, the largest hurdle that low-income college students face is an overall lack of resources.  Low-income students are unlikely to have personal or professional mentors to guide them through the challenges of higher education.  They are also less likely to have family support for choosing the right college, completing financial aid forms, or even regular visits once they get to school.
-          <br/>
-          <Link href="https://www.accreditedschoolsonline.org/resources/low-income-students/" onClick={preventDefault}>
-            Source
-         </Link>
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-     
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-label="Expand"
-          aria-controls="additional-actions1-content"
-          id="additional-actions1-header"
-        >
-          <FormControlLabel
-            aria-label="Acknowledge"
-            onClick={(event) => event.stopPropagation()}
+            onClick={()=>{setC({...c,two:true})}}
             onFocus={(event) => event.stopPropagation()}
             control={<Checkbox />}
             label="Five Rules to Improve Your Financial Health"
@@ -75,7 +82,10 @@ const Resources = () => {
           </Typography>
         </AccordionDetails>
       </Accordion>
+ :<></>}
 
+  
+{!c.three?   
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -85,7 +95,7 @@ const Resources = () => {
         >
           <FormControlLabel
             aria-label="Acknowledge"
-            onClick={(event) => event.stopPropagation()}
+            onClick={()=>{setC({...c,three:true})}}
             onFocus={(event) => event.stopPropagation()}
             control={<Checkbox />}
             label="8 Tips for Taking Out Student Loans"
@@ -100,7 +110,9 @@ const Resources = () => {
          </Link>
           </Typography>
         </AccordionDetails>
-      </Accordion>
+      </Accordion> :<></>}
+     
+  
     </div>
   );
 }

@@ -15,6 +15,9 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Doughnut } from 'react-chartjs-2';
+import TextField from '@material-ui/core/TextField';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
   root: {
@@ -77,13 +80,12 @@ const Expenses = () => {
           <Grid item xs={6}>
           <Card variant="outlined">
           <Doughnut data={data} />
-
             </Card>
           </Grid>
           <Grid item xs={6}
             >
-            <Card className={classes.root} variant="outlined">
-              <CardHeader
+           <Card className={classes.root}variant="outlined">
+              <CardHeader styles={{float:"right"}}
                 avatar={
                   <Avatar aria-label="dollar logo" className={classes.avatar}>
                     $
@@ -99,13 +101,20 @@ const Expenses = () => {
             </Typography>
               </CardContent>
             </Card>
-
-
+            <Box py={1} className={classes.root}>
+            <TextField id="outlined-basic" label="Enter Expense" variant="outlined" />
+            </Box>
+            <Box py={1} className={classes.root}>
+            <TextField id="outlined-basic" label="Enter Item" variant="outlined" />
+            </Box>
+            <Button variant="contained" color="primary">
+              Track
+            </Button>
           </Grid>
           <Grid item xs={12}>
             <Card variant="outlined">
               <CardHeader
-                title="Income"
+                title="Expenses"
               />
               <CardContent>
                 <TableContainer component={Paper}>
@@ -113,7 +122,7 @@ const Expenses = () => {
                     <TableHead>
                       <TableRow>
                         <TableCell>Amount ($)</TableCell>
-                        <TableCell align="center">Source</TableCell>
+                        <TableCell align="center">Item</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>

@@ -15,6 +15,10 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Doughnut } from 'react-chartjs-2';
+import TextField from '@material-ui/core/TextField';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+
 
 const useStyles = makeStyles({
   root: {
@@ -73,13 +77,15 @@ const Income = () => {
 
     return (
       <div>
+       
         <Grid container spacing={1}>
           <Grid item xs={6}>
+         
           <Card variant="outlined">
-          <Doughnut data={data} />
-
+             <Doughnut data={data} />
             </Card>
           </Grid>
+          
           <Grid item xs={6}
             >
             <Card className={classes.root} variant="outlined">
@@ -99,7 +105,16 @@ const Income = () => {
             </Typography>
               </CardContent>
             </Card>
-
+            <Box py={1} className={classes.root}>
+            <TextField id="outlined-basic" label="Enter Income" variant="outlined" />
+            </Box>
+            <Box py={1}  className={classes.root}>
+            <TextField id="outlined-basic" label="Enter Source" variant="outlined" />
+            </Box>
+            <Button variant="contained" color="primary">
+              Track
+            </Button>
+            
 
           </Grid>
           <Grid item xs={12}>

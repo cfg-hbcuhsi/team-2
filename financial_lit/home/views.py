@@ -18,8 +18,8 @@ def login(request):
 
 def sign_up(request):
     if request.method == 'POST':
-        fname = request.POST['First Name']
-        lname = request.POST['Last Name']
+        fname = request.POST['First_Name']
+        lname = request.POST['Last_Name']
         email = request.POST['email']
         pw = request.POST['password']
         b = User(first_name = fname, last_name = lname, email = email, password = pw)
@@ -27,6 +27,8 @@ def sign_up(request):
         return HttpResponse(b.id)
 
 def finance(request):
+    if request.method == 'POST'
+
     return HttpResponse("")
 
 def piechart(request):

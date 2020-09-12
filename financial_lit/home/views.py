@@ -60,6 +60,60 @@ def income(request):
         print(type(a[0]))
         return HttpResponse(json.dumps(a))
 
+@csrf_exempt
+def get_expenses(requests):
+    if requests.method == 'POST':
+        json_data = request.read()
+        data = json.loads(json_data)
+        user_id = data['id']
+        expenses = Expense.objects.filter(id = user_id)
+        expenses_response = expenses.all()
+        reponse = list(expenses_response.values())
+        return HttpResponse(json.dumps(reponse))
 
+
+@csrf_exempt
+def set_profile(request):
+    if request.method == 'POST':
+        json_data = request.read()
+        data = json.loads(json_data)
+        address = data['address']
+        state = data['state']
+        zipcode = data['zipcode']
+        income = data['income']
+        rent = data['rent']
+        car_payment = data['car_payment']
+        id = data['id']
+        food = data['food']
+
+        #find user
+        user = User.objects.filter(id=id)
+
+        #update user
+        if bool(user):
+            user[0].address = address
+            user[0].rent = rent
+            user[0].car_payment = car_payment
+            user[0].income = income
+            user[0].state = state
+            user[0].zipcode = zipcode
+            b[0].save()
+
+        #add expense
+        if bool(car_payment):
+            expense = Expense(userId=user[0].id, amount = car_payment, source = "car_payment")
+            expense.save()
+        #add rent
+        if bool(rent):
+            rent = Expense(userId=user[0].id, amount = rent , source = "rent")
+            rent.save()
+
+        #add food
+        if bool(food):
+            food = Expense(userId=user[0].id, amount = food, source = "food")
+            food.save()
+
+        return HttpResponse()
+    return Ht
 
 

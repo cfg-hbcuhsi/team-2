@@ -73,7 +73,7 @@ function Dashboard(props) {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  const [tab,setTab] = useState(1);
+  const [tab,setTab] = useState(6);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -210,9 +210,10 @@ function Dashboard(props) {
           </Drawer>
         </Hidden>
       </nav>
-      <div>
-      {renderView()}
-      </div>
+      <main className={classes.content}>
+        <div className={classes.toolbar} />
+        {renderView()}
+      </main>
     </div>
   );
 }

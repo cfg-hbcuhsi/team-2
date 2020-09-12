@@ -29,6 +29,7 @@ import Budget from './Budget'
 import Expenses from './Expenses'
 import Resources from './Resources'
 import Button from '@material-ui/core/Button';
+import Goals from './Goals'
 
 
 const drawerWidth = 240;
@@ -118,6 +119,14 @@ function Dashboard(props) {
           <ListItemText primary="Expenses" />
         </ListItem>
 
+
+        <ListItem button onClick={()=>{setTab(7)}}>
+          <ListItemIcon>
+            <PersonIcon />
+          </ListItemIcon>
+          <ListItemText primary="Goals" />
+        </ListItem>
+
         <ListItem button onClick={()=>{setTab(5)}}>
           <ListItemIcon>
             <NoteIcon />
@@ -157,6 +166,9 @@ function Dashboard(props) {
     }
     if(tab == 6){
       return <Profile/>
+    }
+    if(tab == 7){
+      return <Goals/>
     }
   }
 

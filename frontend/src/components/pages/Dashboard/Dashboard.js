@@ -23,6 +23,13 @@ import { spacing } from '@material-ui/system';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import PersonIcon from '@material-ui/icons/Person';
 import Income from './Income'
+import Summary from './Summary';
+import Profile from './Profile';
+import Budget from './Budget'
+import Expenses from './Expenses'
+import Resources from './Resources'
+import Button from '@material-ui/core/Button';
+
 
 const drawerWidth = 240;
 
@@ -66,7 +73,7 @@ function Dashboard(props) {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  const [tab,setTab] = useState(1);
+  const [tab,setTab] = useState(6);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -75,7 +82,7 @@ function Dashboard(props) {
   const drawer = (
     <div>
       <div className={classes.toolbar} />
-      <ListItem button aria-label="profile"  p={2}>
+      <ListItem button aria-label="profile" p={2}>
           <ListItemIcon>
           <Avatar className={classes.green}>NU</Avatar>
           </ListItemIcon>
@@ -83,42 +90,42 @@ function Dashboard(props) {
         </ListItem>
       <Divider />
       <List component="nav" aria-label="main menu">
-        <ListItem button>
+        <ListItem button onClick={()=>{setTab(1)}}>
           <ListItemIcon>
             <HomeIcon />
           </ListItemIcon>
-          <ListItemText primary="Summary" onClick={()=>{setTab(1)}}/>
+          <ListItemText primary="Summary" />
         </ListItem>
         
-        <ListItem button>
+        <ListItem button  onClick={()=>{setTab(2)}}>
           <ListItemIcon>
             <AccountBalanceWalletIcon />
           </ListItemIcon>
-          <ListItemText primary="Budget" />
+          <ListItemText primary="Budget"  />
         </ListItem>
 
-        <ListItem button >
+        <ListItem button  onClick={()=>{setTab(3)}}>
           <ListItemIcon>
             <AttachMoneyIcon />
           </ListItemIcon>
-          <ListItemText primary="Income"  onClick={()=>{setTab(3)}}/>
+          <ListItemText primary="Income" />
         </ListItem>
 
-        <ListItem button>
+        <ListItem button onClick={()=>{setTab(4)}}>
           <ListItemIcon>
             <CreditCardIcon />
           </ListItemIcon>
           <ListItemText primary="Expenses" />
         </ListItem>
 
-        <ListItem button>
+        <ListItem button onClick={()=>{setTab(5)}}>
           <ListItemIcon>
             <NoteIcon />
           </ListItemIcon>
           <ListItemText primary="Resources" />
         </ListItem>
 
-        <ListItem button>
+        <ListItem button onClick={()=>{setTab(6)}}>
           <ListItemIcon>
             <PersonIcon />
           </ListItemIcon>
@@ -131,6 +138,27 @@ function Dashboard(props) {
   );
   const container = window !== undefined ? () => window().document.body : undefined;
   
+
+  const renderView = () => {
+    if(tab == 1) { 
+      return <Summary />
+    }
+    if(tab == 2){
+      return <Budget />
+    }
+    if(tab == 3){
+      return <Income/>
+    }
+    if(tab == 4) { 
+      return <Expenses />
+    }
+    if(tab == 5){
+      return <Resources/>
+    }
+    if(tab == 6){
+      return <Profile/>
+    }
+  }
 
   return (
     <div className={classes.root}>
@@ -182,6 +210,10 @@ function Dashboard(props) {
           </Drawer>
         </Hidden>
       </nav>
+      <main className={classes.content}>
+        <div className={classes.toolbar} />
+        {renderView()}
+      </main>
     </div>
   );
 }

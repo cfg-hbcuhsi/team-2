@@ -1,4 +1,5 @@
 *.pem
 *.ppk
 *.swp
+*.pyc
 node_modules/

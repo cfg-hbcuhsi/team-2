@@ -2,16 +2,16 @@ from django.db import models
 
 # Create your models here.
 class User(models.Model):
-    first_name = models.CharField(max_length=200)
-    last_name = models.CharField(max_length=200)
-    dob = models.DateField(blank=True)
-    password = models.CharField(max_length=200)
-    email = models.CharField(max_length=200)
-    household_size = models.IntegerField(blank=True)
-    phone  = models.IntegerField(blank=True)
-    race  = models.IntegerField(blank=True)
-    grade_year = models.IntegerField(blank=True)
-    yearly_income   = models.IntegerField(blank=True)
+    first_name = models.CharField(max_length=200,null=True)
+    last_name = models.CharField(max_length=200,null=True)
+    dob = models.DateField(null=True)
+    password = models.CharField(max_length=200,null=True)
+    email = models.CharField(max_length=200,null=True)
+    household_size = models.IntegerField(null=True)
+    phone  = models.IntegerField(null=True)
+    race  = models.IntegerField(null=True)
+    grade_year = models.IntegerField(null=True)
+    yearly_income   = models.IntegerField(null=True)
 
 class Expenses(models.Model):
     userId =  models.ForeignKey(User, on_delete=models.CASCADE)
